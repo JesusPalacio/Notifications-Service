@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depósito realizado</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Arial', sans-serif; background-color: #f8f9fa;">
+    <table role="presentation" style="width: 100%; border-collapse: collapse;">
+        <tr>
+            <td style="padding: 40px 20px;">
+                <table role="presentation" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                    <!-- Header -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+                            <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: bold;">
+                                🔥 INFERNO BANK
+                            </h1>
+                            <p style="color: #aed6f1; margin: 10px 0 0 0; font-size: 14px;">
+                                Confirmación de depósito
+                            </p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 40px 30px;">
+                            <div style="text-align: center; background: linear-gradient(135deg, #e8f6ff 0%, #d4edda 100%); padding: 30px; border-radius: 12px; margin-bottom: 30px;">
+                                <h2 style="color: #3498db; margin: 0 0 10px 0; font-size: 18px; font-weight: normal;">
+                                    💰 Depósito Exitoso
+                                </h2>
+                                <p style="font-size: 36px; color: #2c3e50; margin: 10px 0; font-weight: bold;">
+                                    +${{amount}}
+                                </p>
+                                <p style="color: #7f8c8d; margin: 0; font-size: 14px;">
+                                    Fondos agregados a tu cuenta
+                                </p>
+                            </div>
+                            
+                            <!-- Transaction Details -->
+                            <div style="background-color: #f8f9fa; border-radius: 8px; padding: 25px; margin: 25px 0;">
+                                <h3 style="color: #2c3e50; margin: 0 0 20px 0; font-size: 16px; font-weight: bold;">
+                                    📋 Detalles del depósito
+                                </h3>
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <tr>
+                                        <td style="padding: 8px 0; color: #7f8c8d; font-weight: bold; width: 30%;">Método:</td>
+                                        <td style="padding: 8px 0; color: #2c3e50; font-weight: bold;">{{merchant}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 0; color: #7f8c8d; font-weight: bold;">Monto:</td>
+                                        <td style="padding: 8px 0; color: #27ae60; font-weight: bold;">${{amount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 0; color: #7f8c8d; font-weight: bold;">Fecha:</td>
+                                        <td style="padding: 8px 0; color: #2c3e50;">{{date}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 0; color: #7f8c8d; font-weight: bold;">Estado:</td>
+                                        <td style="padding: 8px 0; color: #27ae60; font-weight: bold;">✅ COMPLETADO</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <div style="background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                                <p style="color: #155724; margin: 0; font-size: 14px; text-align: center; font-weight: bold;">
+                                    💡 Los fondos están disponibles inmediatamente en tu cuenta
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #2c3e50; padding: 20px; text-align: center; border-radius: 0 0 12px 12px;">
+                            <p style="color: #bdc3c7; margin: 0; font-size: 12px;">
+                                Inferno Bank - Comprobante de depósito
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

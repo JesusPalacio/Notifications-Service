@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva tarjeta creada</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Arial', sans-serif; background-color: #f8f9fa;">
+    <table role="presentation" style="width: 100%; border-collapse: collapse;">
+        <tr>
+            <td style="padding: 40px 20px;">
+                <table role="presentation" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                    <!-- Header -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+                            <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: bold;">
+                                🔥 INFERNO BANK
+                            </h1>
+                            <p style="color: #e8d5f2; margin: 10px 0 0 0; font-size: 14px;">
+                                Nueva tarjeta disponible
+                            </p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 40px 30px;">
+                            <div style="text-align: center; margin: 25px 0;">
+                                <div style="display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px; font-size: 18px;">
+                                    💳 Nueva Tarjeta {{type}}
+                                </div>
+                            </div>
+                            
+                            <p style="color: #34495e; text-align: center; font-size: 16px; margin-bottom: 30px;">
+                                Tu nueva tarjeta {{type}} ha sido creada exitosamente
+                            </p>
+                            
+                            <div style="background-color: #e8f5e8; padding: 25px; border-radius: 12px; text-align: center; margin: 30px 0;">
+                                <p style="color: #27ae60; margin: 0 0 10px 0; font-size: 14px; font-weight: bold;">Límite asignado</p>
+                                <p style="color: #2c3e50; margin: 0; font-size: 32px; font-weight: bold;">${{amount}}</p>
+                            </div>
+                            
+                            <div style="background-color: #f8f9fa; border-radius: 8px; padding: 25px; margin: 25px 0;">
+                                <h3 style="color: #2c3e50; margin: 0 0 20px 0; font-size: 16px; font-weight: bold;">
+                                    📋 Detalles de la tarjeta
+                                </h3>
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <tr>
+                                        <td style="padding: 8px 0; color: #7f8c8d; font-weight: bold; width: 30%;">Tipo:</td>
+                                        <td style="padding: 8px 0; color: #2c3e50; font-weight: bold;">{{type}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 0; color: #7f8c8d; font-weight: bold;">Fecha de creación:</td>
+                                        <td style="padding: 8px 0; color: #2c3e50;">{{date}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 0; color: #7f8c8d; font-weight: bold;">Estado:</td>
+                                        <td style="padding: 8px 0; color: #f39c12; font-weight: bold;">PENDIENTE DE ACTIVACIÓN</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <p style="color: #7f8c8d; font-size: 14px; text-align: center; margin: 30px 0 0 0; line-height: 1.6;">
+                                Tu tarjeta se activará automáticamente después de realizar 10 transacciones.
+                            </p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #2c3e50; padding: 20px; text-align: center; border-radius: 0 0 12px 12px;">
+                            <p style="color: #bdc3c7; margin: 0; font-size: 12px;">
+                                Inferno Bank - Nueva tarjeta creada
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "name": "send-notifications-error-lambda",
+  "version": "1.0.0",
+  "description": "Lambda function para procesar mensajes fallidos de notificaciones desde DLQ",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "test:watch": "nodemon index.js",
+    "package": "npm install --production && zip -r ../send-notifications-error.zip .",
+    "deploy": "aws lambda update-function-code --function-name send-notifications-error --zip-file fileb://../send-notifications-error.zip"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "dlq",
+    "error-handling",
+    "notifications"
+  ],
+  "author": "Inferno Bank Team",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.490.0",
+    "@aws-sdk/lib-dynamodb": "^3.490.0",
+    "@aws-sdk/client-ses": "^3.490.0",
+    "uuid": "^9.0.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "lambda": {
+    "runtime": "nodejs18.x",
+    "handler": "index.handler",
+    "timeout": 120,
+    "memorySize": 512,
+    "environment": {
+      "NODE_ENV": "production",
+      "ADMIN_EMAIL": "admin@infernobank.com"
+    },
+    "reservedConcurrency": 5,
+    "batchSize": 5,
+    "maximumBatchingWindowInSeconds": 10
+  }
+}
