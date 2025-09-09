@@ -88,10 +88,28 @@ async function processNotificationMessage(sqsRecord) {
 
   try {
     // Obtener template de email
-    const emailTemplate = await getEmailTemplate(notification.type);
+    let emailTemplate = await getEmailTemplate(notification.type);
     
     // Formatear datos para el template
     const formattedData = EmailTemplateManager.formatTemplateData(notification.templateData);
+
+    // Fecha en formato local
+    const date = new Date().toLocaleString("es-CO", {
+      timeZone: "America/Bogota",
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+
+    // Replace {{date}}
+    emailTemplate = emailTemplate.replace("{{date}}", date);
+
+    // Replace otros placeholders
+    if (formattedData.fullName) {
+      emailTemplate = emailTemplate.replace("{{fullName}}", formattedData.fullName);
+    }
     
     // Enviar email
     await sesService.sendTemplateEmail(
