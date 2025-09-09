@@ -1,7 +1,7 @@
 resource "aws_sqs_queue" "notification_email_dlq" {
   name = "${local.name_prefix}-notification-email-error-sqs"
 
-  # Message retention period (14 days)
+  # Message retention period 
   message_retention_seconds = var.sqs_message_retention_seconds
 
   # Visibility timeout
@@ -23,10 +23,10 @@ resource "aws_sqs_queue" "notification_email_dlq" {
 resource "aws_sqs_queue" "notification_email" {
   name = "${local.name_prefix}-notification-email-sqs"
 
-  # Message retention period (14 days)
+  # Message retention period 
   message_retention_seconds = var.sqs_message_retention_seconds
 
-  # Visibility timeout (should be 6x the Lambda timeout)
+  # Visibility timeout 
   visibility_timeout_seconds = var.sqs_visibility_timeout_seconds
 
   # Enable long polling
@@ -87,6 +87,15 @@ resource "aws_sqs_queue_policy" "notification_email_policy" {
             "aws:SourceAccount" = local.account_id
           }
         }
+      },
+      {
+        Sid    = "AllowCrossAccountFrom683104418449"
+        Effect = "Allow"
+        Principal = {
+          AWS = "arn:aws:iam::683104418449:root"
+        }
+        Action = "sqs:SendMessage"
+        Resource = aws_sqs_queue.notification_email.arn
       }
     ]
   })
