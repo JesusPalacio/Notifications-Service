@@ -188,34 +188,6 @@ class EmailTemplateManager {
           </body>
           </html>
         `
-      },
-
-      [NOTIFICATION_TYPES.REPORT_ACTIVITY]: {
-        template: `
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <meta charset="UTF-8">
-            <title>Reporte de actividad</title>
-          </head>
-          <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
-            <div style="background-color: white; border-radius: 10px; padding: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-              <h1 style="color: #e74c3c; text-align: center; margin-bottom: 25px;">🔥 INFERNO BANK</h1>
-              <p style="color: #34495e; font-size: 16px; text-align: center;">
-                Hemos generado tu reporte de actividad con todas las transacciones del período solicitado.
-              </p>
-              <div style="text-align: center; margin: 20px 0;">
-                <a href="{{url}}" style="background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%); color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; display: inline-block;">
-                  Descargar Reporte
-                </a>
-              </div>
-              <p style="color: #7f8c8d; font-size: 14px; text-align: center; margin-top: 25px;">
-                Fecha de generación: {{date}}
-              </p>
-            </div>
-          </body>
-          </html>
-        `
       }
     };
   }
