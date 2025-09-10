@@ -1,0 +1,43 @@
+{
+  "name": "generate-report-lambda",
+  "version": "1.0.0",
+  "description": "Lambda para generar reportes de actividad y subirlos a S3",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "package": "npm install --production && zip -r ../generate-report.zip .",
+    "deploy": "aws lambda update-function-code --function-name inferno-bank-dev-generate-report --zip-file fileb://../generate-report.zip"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "s3",
+    "sqs",
+    "reports"
+  ],
+  "author": "Inferno Bank Team",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.884.0",
+    "@aws-sdk/s3-request-presigner": "^3.884.0",
+    "date-fns": "^2.30.0",
+    "pdfkit": "^0.17.2",
+    "stream-buffers": "^3.0.3",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "lambda": {
+    "runtime": "nodejs18.x",
+    "handler": "index.handler",
+    "timeout": 60,
+    "memorySize": 256,
+    "environment": {
+      "NODE_ENV": "production"
+    }
+  }
+}
