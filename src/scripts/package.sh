@@ -47,4 +47,24 @@ aws lambda update-function-code \
 # Vuelve a la raíz
 cd ../../
 
+# === Empaquetar y subir generate-report ===
+echo "📦 Empaquetando Lambda: generate-report..."
+
+cd lambdas/generate-report
+
+# Instala dependencias de producción
+npm install --production || true
+
+
+# Empaca en ZIP
+zip -r ../generate-report.zip .
+
+# Sube el ZIP a AWS Lambda
+aws lambda update-function-code \
+  --function-name inferno-bank-dev-generate-report \
+  --zip-file fileb://../generate-report.zip
+
+# Vuelve a la raíz
+cd ../../
+
 echo "✅ Deploy completado con éxito"

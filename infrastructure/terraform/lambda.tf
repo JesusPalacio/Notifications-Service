@@ -22,6 +22,18 @@ data "archive_file" "send_notifications_error_zip" {
   ]
 }
 
+data "archive_file" "generate_report_zip" {
+  type        = "zip"
+  output_path = "${path.module}/../../build/generate-report.zip"
+
+  source_dir = "${path.module}/../../src/lambdas/generate-report"
+
+  excludes = [
+    "package-lock.json",
+    "*.log"
+  ]
+}
+
 # Main Send Notifications Lambda Function
 resource "aws_lambda_function" "send_notifications" {
   filename         = data.archive_file.send_notifications_zip.output_path
@@ -117,6 +129,37 @@ resource "aws_lambda_function" "send_notifications_error" {
   ]
 }
 
+resource "aws_lambda_function" "generate_report" {
+  filename         = data.archive_file.generate_report_zip.output_path
+  function_name    = "${local.name_prefix}-generate-report"
+  role             = aws_iam_role.lambda_execution_role.arn
+  handler          = "generate-report.handler"
+  runtime          = local.lambda_runtime
+  timeout          = 60
+  memory_size      = 256
+
+  source_code_hash = data.archive_file.generate_report_zip.output_base64sha256
+
+  environment {
+    variables = {
+      NODE_ENV       = var.environment
+      REPORTS_BUCKET = aws_s3_bucket.reports.bucket
+      LOG_LEVEL      = var.environment == "prod" ? "info" : "debug"
+    }
+  }
+
+  tags = merge(local.common_tags, {
+    Name = "${local.name_prefix}-generate-report"
+    Type = "lambda-function"
+  })
+
+  depends_on = [
+    aws_iam_role_policy_attachment.lambda_basic_execution,
+    aws_iam_role_policy_attachment.lambda_s3_policy_attachment,
+    aws_cloudwatch_log_group.generate_report_logs
+  ]
+}
+
 # CloudWatch Log Groups
 resource "aws_cloudwatch_log_group" "send_notifications_logs" {
   name              = "/aws/lambda/${local.name_prefix}-send-notifications"
@@ -134,6 +177,16 @@ resource "aws_cloudwatch_log_group" "send_notifications_error_logs" {
   
   tags = merge(local.common_tags, {
     Name = "${local.name_prefix}-send-notifications-error-logs"
+    Type = "cloudwatch-logs"
+  })
+}
+
+resource "aws_cloudwatch_log_group" "generate_report_logs" {
+  name              = "/aws/lambda/${local.name_prefix}-generate-report"
+  retention_in_days = var.environment == "prod" ? 30 : 14
+
+  tags = merge(local.common_tags, {
+    Name = "${local.name_prefix}-generate-report-logs"
     Type = "cloudwatch-logs"
   })
 }
@@ -279,6 +332,11 @@ output "lambda_functions" {
       function_name = aws_lambda_function.send_notifications_error.function_name
       arn          = aws_lambda_function.send_notifications_error.arn
       version      = aws_lambda_function.send_notifications_error.version
+    }
+  generate_report = {
+      function_name = aws_lambda_function.generate_report.function_name
+      arn           = aws_lambda_function.generate_report.arn
+      version       = aws_lambda_function.generate_report.version
     }
   }
 }
